@@ -126,7 +126,7 @@ namespace FaceRecognition
         static void Main(string[] args)
         {
             //Program program = new Program();
-            Bitmap imagePassport = new Bitmap("Паспорт5.jpg");
+            Bitmap imagePassport = new Bitmap("index2.png");
             if (ImagePassport.HaveFace(imagePassport))
             {
                 Console.WriteLine("Есть лицо");

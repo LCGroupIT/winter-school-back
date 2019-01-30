@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataService\DataService.csproj" />
+    <ProjectReference Include="..\OcrService\OcrService.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
