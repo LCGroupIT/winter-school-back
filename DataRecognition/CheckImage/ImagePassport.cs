@@ -15,7 +15,7 @@ namespace CheckImage
     {
         public static bool HaveFace(Bitmap imagePassport)
         {
-            Rectangle cloneRect = new Rectangle(0, imagePassport.Height / 2, imagePassport.Width / 2, imagePassport.Height / 2);
+            Rectangle cloneRect = new Rectangle((int)(imagePassport.Width * 0.05), (int)(imagePassport.Height / 2.0 + imagePassport.Width * 0.129), (int)(imagePassport.Width * 0.28), (int)(imagePassport.Width * 0.357));
             Bitmap cloneBitmap = imagePassport.Clone(cloneRect, imagePassport.PixelFormat);
             HaarObjectDetector faceDetector = new HaarObjectDetector(new FaceHaarCascade(), minSize: 70, searchMode: ObjectDetectorSearchMode.Average);
             // распознаём лица
