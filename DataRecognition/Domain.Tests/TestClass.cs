@@ -1,19 +1,21 @@
-﻿using Domain.Model;
+﻿using Domain.Logic;
+using Domain.Model;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Services.Remoting.Client;
-using DataService.Interfaces;
 
-namespace DataService.Client
+namespace Domain.Tests
 {
-    public class Program
+    [TestFixture]
+    public class TestClass
     {
-        //Тест. Nunit вылетает, возможно плохо взаимодействует с fabric service
-        static async Task MainAsync(string[] args)
+        [Test]
+        public void TestMethod()
         {
             var passport = new Passport()
             {
@@ -30,11 +32,10 @@ namespace DataService.Client
                 Sex = SexType.Male
             };
 
-            var calculatorClient = ServiceProxy.Create<IDataService>(new Uri("fabric:/DataServiceApplication/DataService"));
+            var repository = new PassportRepository(ConfigurationManager.AppSettings["DBConnection"]);
 
-            await calculatorClient.SavePassportAsync(passport);
-
-            Console.WriteLine("No exceptions");
+            repository.CreateAsync(passport);
+            repository.SaveAsync();
         }
     }
 }

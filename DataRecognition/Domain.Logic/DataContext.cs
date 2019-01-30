@@ -10,6 +10,8 @@ namespace Domain.Logic
 {
     public class DataContext : DbContext
     {
+        public DataContext() : base()
+        { }
         public DataContext(string connectionString) : base(connectionString)
         { }
 
