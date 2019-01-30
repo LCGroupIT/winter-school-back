@@ -10,41 +10,27 @@ namespace Domain.Logic
 {
     public class PassportRepository : IRepository<Passport>
     {
-        private DataContext db;
+        private string _connectionString;
 
         public PassportRepository(string connectionString)
         {
-            this.db = new DataContext(connectionString);
+            _connectionString = connectionString;
         }
 
-        public Task CreateAsync(Passport passport)
+        public async void CreateAsync(Passport passport)
         {
-            return Task.FromResult(db.Passports.Add(passport));
-        }
-
-        public Task SaveAsync()
-        {
-            return Task.FromResult(db.SaveChanges());
-        }
-
-        private bool disposed = false;
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
+            using (var context = new DataContext(_connectionString))
             {
-                if (disposing)
-                {
-                    db.Dispose();
-                }
+                await Task.Run(() => context.Passports.Add(passport));
             }
-            this.disposed = true;
         }
 
-        public void Dispose()
+        public async void SaveAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            using (var context = new DataContext(_connectionString))
+            {
+                await Task.Run(() => Task.FromResult(context.SaveChanges()));
+            }
         }
     }
 }

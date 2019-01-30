@@ -27,11 +27,13 @@ namespace DataService
             _repository = repository;
         }
 
-        public Task SavePassportAsync(Passport passport)
+        public async Task SavePassportAsync(Passport passport)
         {
-            _repository.CreateAsync(passport);
-            _repository.SaveAsync();
-            return Task.FromResult(true);
+            await Task.Run(() =>
+            {
+                _repository.CreateAsync(passport);
+                _repository.SaveAsync();
+            });
         }
 
         /// <summary>
