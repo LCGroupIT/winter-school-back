@@ -17,19 +17,12 @@ namespace Domain.Logic
             _connectionString = connectionString;
         }
 
-        public async void CreateAsync(Passport passport)
+        public async Task CreateAsync(Passport passport)
         {
             using (var context = new DataContext(_connectionString))
             {
-                await Task.Run(() => context.Passports.Add(passport));
-            }
-        }
-
-        public async void SaveAsync()
-        {
-            using (var context = new DataContext(_connectionString))
-            {
-                await Task.Run(() => Task.FromResult(context.SaveChanges()));
+                context.Passports.Add(passport);
+                await context.SaveChangesAsync();
             }
         }
     }

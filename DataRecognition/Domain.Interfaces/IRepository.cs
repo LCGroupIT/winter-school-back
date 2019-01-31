@@ -8,7 +8,6 @@ namespace Domain.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        void CreateAsync(T item); 
-        void SaveAsync();
+        Task CreateAsync(T item);
     }
 }
