@@ -9,6 +9,7 @@ using Domain.Interfaces;
 using Domain.Logic;
 using Domain.Model;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
+using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace DataService
@@ -29,11 +30,7 @@ namespace DataService
 
         public async Task SavePassportAsync(Passport passport)
         {
-            await Task.Run(() =>
-            {
-                _repository.CreateAsync(passport);
-                _repository.SaveAsync();
-            });
+            await _repository.CreateAsync(passport);
         }
 
         /// <summary>
@@ -42,7 +39,10 @@ namespace DataService
         /// <returns>Коллекция прослушивателей.</returns>
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
         {
-            return new ServiceInstanceListener[0];
+            return new[]
+            {
+                new ServiceInstanceListener(this.CreateServiceRemotingListener)
+            };
         }
     }
 }
