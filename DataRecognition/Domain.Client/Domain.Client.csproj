@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77AE536F-47D3-46CA-9081-3D1E68BBD9B0}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain.Logic</RootNamespace>
-    <AssemblyName>Domain.Logic</AssemblyName>
+    <ProjectGuid>{5CDE1A9B-0248-4E84-B9BE-9245B8565C69}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Domain.Client</RootNamespace>
+    <AssemblyName>Domain.Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -48,33 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201901311014437_PassportMigration.cs" />
-    <Compile Include="Migrations\201901311014437_PassportMigration.Designer.cs">
-      <DependentUpon>201901311014437_PassportMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="PassportRepository.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain.Interfaces\Domain.Interfaces.csproj">
-      <Project>{6af9ed10-61d0-4864-b3e1-1ecd24360249}</Project>
-      <Name>Domain.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
-      <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
-      <Name>Domain.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901311014437_PassportMigration.resx">
-      <DependentUpon>201901311014437_PassportMigration.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj">
+      <Project>{77AE536F-47D3-46CA-9081-3D1E68BBD9B0}</Project>
+      <Name>Domain.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
+      <Project>{92D9936E-E938-4774-8BB2-7F9C5DB4538A}</Project>
+      <Name>Domain.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
