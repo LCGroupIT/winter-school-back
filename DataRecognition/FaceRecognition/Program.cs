@@ -11,6 +11,10 @@ using Accord.Imaging.Filters;
 using Accord.Vision.Detection;
 using Accord.Vision.Detection.Cascades;
 using CheckImage;
+using System.IO;
+using Microsoft.ServiceFabric.Services.Remoting.Client;
+using OcrService.Interfaces;
+using Domain.Model;
 
 
 namespace FaceRecognition
@@ -126,8 +130,18 @@ namespace FaceRecognition
         static void Main(string[] args)
         {
             //Program program = new Program();
-            Bitmap imagePassport = new Bitmap("index2.png");
-            if (ImagePassport.HaveFace(imagePassport))
+            Passport passport = new Passport();
+            Bitmap imagePassport = new Bitmap("Паспорт.jpg");
+            MemoryStream ms = new MemoryStream();
+            imagePassport.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            var imageByte = ms.ToArray();
+
+            var calculatorClient = ServiceProxy.Create<IOcrService>(new Uri("fabric:/DataServiceApplication/OcrService"));
+
+            passport = calculatorClient.ParsePassport(imageByte).Result;
+
+            Console.WriteLine("No exceptions");
+            /*if (ImagePassport.HaveFace(imagePassport))
             {
                 Console.WriteLine("Есть лицо");
             }
@@ -139,8 +153,8 @@ namespace FaceRecognition
             }
             else
                 Console.WriteLine("Нет РФ");
-            Console.ReadLine();
-            
+            Console.ReadLine();*/
+
             //Bitmap BlackWhitePassport = (Bitmap)imagePassport.Clone();
             //FiltersSequence filtersSequence = new FiltersSequence();
             /*BlobCounter blobCounter = new BlobCounter();

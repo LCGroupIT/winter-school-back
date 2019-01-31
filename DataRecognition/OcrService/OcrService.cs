@@ -37,7 +37,7 @@ namespace OcrService
             }
             else
             {
-                throw new Exception();
+                throw new Exception("No face");
             }
 
         }

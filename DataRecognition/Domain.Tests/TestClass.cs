@@ -2,11 +2,8 @@
 using Domain.Model;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Tests
@@ -15,7 +12,7 @@ namespace Domain.Tests
     public class TestClass
     {
         [Test]
-        public void TestMethod()
+        public async Task TestMethod()
         {
             var passport = new Passport()
             {
@@ -34,8 +31,7 @@ namespace Domain.Tests
 
             var repository = new PassportRepository(ConfigurationManager.AppSettings["DBConnection"]);
 
-            repository.CreateAsync(passport);
-            repository.SaveAsync();
+            await repository.CreateAsync(passport);
         }
     }
 }
