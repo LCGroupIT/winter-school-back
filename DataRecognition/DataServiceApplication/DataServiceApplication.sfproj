@@ -29,6 +29,7 @@
     <None Include="Scripts\Deploy-FabricApplication.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ApiService\ApiService.csproj" />
     <ProjectReference Include="..\DataService\DataService.csproj" />
     <ProjectReference Include="..\OcrService\OcrService.csproj" />
   </ItemGroup>

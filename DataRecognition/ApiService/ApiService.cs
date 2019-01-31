@@ -10,11 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
+using Microsoft.ServiceFabric.Data;
 
 namespace ApiService
 {
     /// <summary>
-    /// Среда выполнения Service Fabric создает экземпляр этого класса для каждого экземпляра службы.
+    /// FabricRuntime создает экземпляр этого класса для каждого экземпляра типа службы. 
     /// </summary>
     internal sealed class ApiService : StatelessService
     {
@@ -23,7 +24,7 @@ namespace ApiService
         { }
 
         /// <summary>
-        /// Необязательное переопределение для создания прослушивателей (например, TCP, HTTP) для этой реплики службы, чтобы обрабатывать запросы клиентов или пользователей.
+        /// Необязательное переопределение для создания прослушивателей (например, TCP, HTTP) для этого экземпляра службы.
         /// </summary>
         /// <returns>Коллекция прослушивателей.</returns>
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -48,5 +49,5 @@ namespace ApiService
                     }))
             };
         }
-     }
+    }
 }

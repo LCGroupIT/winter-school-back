@@ -1,38 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Services.Client;
-using Microsoft.ServiceFabric.Services.Remoting.Client;
-using DataService.Interfaces;
-using ApiService.Model;
-using Domain.Model;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace ApiService.Controllers
 {
-    class PassportController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PassportController : ControllerBase
     {
-        [Route("api/[controller]")]
-        public class ProductsController : Controller
+        // POST api/values
+        [HttpPost]
+        public async  Post([FromBody] IFormFile passportPhoto)
         {
-            private readonly IDataService _passportService;
-
-            public ProductsController()
+            if (passportPhoto == null || passportPhoto.Length == 0)
             {
-                _passportService = ServiceProxy.Create<IDataService>(
-                    new Uri("fabric:/DataServiceApplication/DataService"),
-                    new ServicePartitionKey(0));
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
 
-            [HttpPost]
-            public async Task Post([FromBody] ApiPassport passport)
+            byte[] outputArray;
+            using (var stream = new MemoryStream())
             {
-                var newPassport = JsonConvert.DeserializeObject<Passport>(passport);
+                await passportPhoto.CopyToAsync(stream);
+                outputArray = stream.ToArray();
+            }
 
-                await _passportService.SavePassportAsync(newPassport);
+            try
+            {
+                var ocrService = ServiceProxy.Create<IOcrService>(new Uri("fabric:/DataServiceApplication/OcrService"));
+                var passport = await ocrService.ParsePassport(outputArray);
+                Response.StatusCode = (int)HttpStatusCode.OK;
+            }
+            catch (Exception exception)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
         }
     }

@@ -15,8 +15,12 @@
     <EntryPoint>
       <ExeHost>
         <Program>ApiService.exe</Program>
+        <WorkingFolder>CodePackage</WorkingFolder>
       </ExeHost>
     </EntryPoint>
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+    </EnvironmentVariables>
   </CodePackage>
 
   <!-- Пакет конфигурации представляет собой содержимое каталога Config в PackageRoot 
@@ -28,7 +32,7 @@
       <!-- Эту конечную точку прослушиватель каналов связи использует для получения порта для 
            прослушивания. Обратите внимание, что, если ваша служба поделена на разделы, этот порт совместно используется
            с репликами различных разделов, размещенными в коде. -->
-      <Endpoint Name="ServiceEndpoint" />
+      <Endpoint Protocol="http" Name="ServiceEndpoint" Type="Input" Port="8600" />
     </Endpoints>
   </Resources>
 </ServiceManifest>
