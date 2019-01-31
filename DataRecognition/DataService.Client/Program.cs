@@ -1,10 +1,5 @@
 ﻿using Domain.Model;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Remoting.Client;
 using DataService.Interfaces;
 
@@ -13,16 +8,16 @@ namespace DataService.Client
     public class Program
     {
         //Тест. Nunit вылетает, возможно плохо взаимодействует с fabric service
-        static async Task MainAsync(string[] args)
+        private static void Main(string[] args)
         {
             var passport = new Passport()
             {
                 Address = "Звездная",
-                Birthday = new DateTime(1980, 4, 3, new GregorianCalendar()),
+                Birthday = new DateTime(1980, 4, 3),
                 Firstname = "Дарт",
                 IssuedBy = "Космос",
                 IssuedDepartment = "Космический Альянс",
-                IssuedOn = new DateTime(1980, 4, 3, new GregorianCalendar()),
+                IssuedOn = new DateTime(1980, 4, 3),
                 Lastname = "Вейдер",
                 Number = "01",
                 Secondname = "",
@@ -32,7 +27,7 @@ namespace DataService.Client
 
             var calculatorClient = ServiceProxy.Create<IDataService>(new Uri("fabric:/DataServiceApplication/DataService"));
 
-            await calculatorClient.SavePassportAsync(passport);
+            calculatorClient.SavePassportAsync(passport).Wait();
 
             Console.WriteLine("No exceptions");
         }
