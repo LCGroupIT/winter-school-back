@@ -27,13 +27,13 @@ namespace ApiService.Controllers
                     new ServicePartitionKey(0));
             }
 
-            [HttpPost]
-            public async Task Post([FromBody] ApiPassport passport)
-            {
-                var newPassport = JsonConvert.DeserializeObject<Passport>(passport);
+            //[HttpPost]
+            //public async Task Post([FromBody] ApiPassport passport)
+            //{
+            //    var newPassport = JsonConvert.DeserializeObject<Passport>(passport);
 
-                await _passportService.SavePassportAsync(newPassport);
-            }
+            //    await _passportService.SavePassportAsync(newPassport);
+            //}
         }
     }
 }

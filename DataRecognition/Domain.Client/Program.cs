@@ -1,32 +1,16 @@
-﻿using Domain.Interfaces;
-using Domain.Logic;
+﻿using Domain.Logic;
 using Domain.Model;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Tests
+namespace Domain.Client
 {
-    public class PassportMock : IRepository<Passport>
+    class Program
     {
-        public List<Passport> _passports;
-
-        public Task CreateAsync(Passport passport)
-        {
-            return Task.Run(() => _passports.Add(passport));
-        }
-    }
-
-    [TestFixture]
-    public class TestClass
-    {
-        [Test]
-        public void TestMethod()
+        static void Main(string[] args)
         {
             var passport = new Passport()
             {
@@ -43,10 +27,9 @@ namespace Domain.Tests
                 Sex = SexType.Male
             };
 
-            var mock = new PassportMock();
-            mock.CreateAsync(passport).Wait();
+            var repository = new PassportRepository("data source = (localdb)\\MSSQLLocalDB; Initial Catalog = PassportStore; Integrated Security = True;");
 
-            Assert.AreEqual(mock._passports.FirstOrDefault(), passport);
+            repository.CreateAsync(passport).Wait();
         }
     }
 }
