@@ -20,8 +20,12 @@ namespace CheckImage
             HaarObjectDetector faceDetector = new HaarObjectDetector(new FaceHaarCascade(), minSize: 70, searchMode: ObjectDetectorSearchMode.Average);
             // распознаём лица
             IEnumerable<Rectangle> face = faceDetector.ProcessFrame(cloneBitmap);
-
-            return face.Count() > 0;
+            if (face.Count() > 0)
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         public static bool HaveLabelRF(Bitmap imagePassport)
