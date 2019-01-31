@@ -8,9 +8,6 @@
     <ServiceManifestRef ServiceManifestName="OcrServicePkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
   </ServiceManifestImport>
-  <!-- Импортируйте ServiceManifest из ServicePackage. Значения ServiceManifestName и ServiceManifestVersion 
-       должны совпадать с атрибутами Name и Version элемента ServiceManifest, определенного в 
-       файле ServiceManifest.xml. -->
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="DataServicePkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
@@ -21,11 +18,6 @@
         <SingletonPartition />
       </StatelessService>
     </Service>
-    <!-- Приведенный ниже раздел создает экземпляры типов служб при создании экземпляра этого 
-         типа приложения. Кроме того, вы можете создать один экземпляр типа службы или несколько с помощью 
-         модуля ServiceFabric PowerShell.
-         
-         Приведенное ниже значение атрибута ServiceTypeName должно совпадать с именем, определенным в импортированном файле ServiceManifest.xml. -->
     <Service Name="DataService" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="DataServiceType" InstanceCount="[DataService_InstanceCount]">
         <SingletonPartition />
