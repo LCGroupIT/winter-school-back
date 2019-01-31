@@ -1,18 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Fabric;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using DataService.Interfaces;
 using Domain.Interfaces;
+using Domain.Logic;
 using Domain.Model;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
-using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 
 namespace DataService
 {
+    /// <summary>
+    /// Среда выполнения Service Fabric создает экземпляр этого класса для каждого экземпляра службы.
+    /// </summary>
     public class DataService : StatelessService, IDataService
     {
-        private readonly IRepository<Passport> _repository;
+        //Для DI подключен autofac
+        private IRepository<Passport> _repository;
 
         public DataService(StatelessServiceContext context, IRepository<Passport> repository)
             : base(context)
@@ -20,17 +27,22 @@ namespace DataService
             _repository = repository;
         }
 
-        public Task SavePassportAsync(Passport passport)
+        public async Task SavePassportAsync(Passport passport)
         {
-            return _repository.CreateAsync(passport);
+            await Task.Run(() =>
+            {
+                _repository.CreateAsync(passport);
+                _repository.SaveAsync();
+            });
         }
 
+        /// <summary>
+        /// Необязательное переопределение для создания прослушивателей (например, TCP, HTTP) для этой реплики службы, чтобы обрабатывать запросы клиентов или пользователей.
+        /// </summary>
+        /// <returns>Коллекция прослушивателей.</returns>
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
         {
-            return new[]
-            {
-                new ServiceInstanceListener(this.CreateServiceRemotingListener)
-            };
+            return new ServiceInstanceListener[0];
         }
     }
 }

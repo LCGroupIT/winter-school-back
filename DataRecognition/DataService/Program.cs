@@ -26,7 +26,7 @@ namespace DataService
 
                 //DI - магия
                 var builder = new ContainerBuilder();
-                builder.RegisterModule<RepositoryModule>();
+                builder.RegisterModule(new RepositoryModule());
                 builder.RegisterServiceFabricSupport();
                 builder.RegisterStatelessService<DataService>("DataServiceType");
 

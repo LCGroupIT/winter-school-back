@@ -11,7 +11,6 @@ using Domain.Model;
 using System.IO;
 using System.Drawing;
 using CheckImage;
-using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 
 namespace OcrService
 {
@@ -38,7 +37,7 @@ namespace OcrService
             }
             else
             {
-                throw new Exception("No face");
+                throw new Exception();
             }
 
         }
@@ -51,10 +50,7 @@ namespace OcrService
         /// <returns>Коллекция прослушивателей.</returns>
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
         {
-            return new[]
-            {
-                new ServiceInstanceListener(this.CreateServiceRemotingListener)
-            };
+            return new ServiceInstanceListener[0];
         }
 
         /// <summary>
