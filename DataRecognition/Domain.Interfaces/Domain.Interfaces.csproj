@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Domain.Interfaces</RootNamespace>
     <AssemblyName>Domain.Interfaces</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,7 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataRecognition.Domain.Model\Domain.Model.csproj">
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
       <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
       <Name>Domain.Model</Name>
     </ProjectReference>
