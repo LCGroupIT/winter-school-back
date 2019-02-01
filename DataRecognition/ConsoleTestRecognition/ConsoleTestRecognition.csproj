@@ -76,6 +76,10 @@
     <Content Include="img\Passport4.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
+      <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
+      <Name>Domain.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RecognitionService\RecognitionService.csproj">
       <Project>{d2041d17-9b8d-4b24-8768-7e03e069f642}</Project>
       <Name>RecognitionService</Name>
