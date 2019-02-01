@@ -32,7 +32,7 @@
       <!-- Эту конечную точку прослушиватель каналов связи использует для получения порта для 
            прослушивания. Обратите внимание, что, если ваша служба поделена на разделы, этот порт совместно используется
            с репликами различных разделов, размещенными в коде. -->
-      <Endpoint Protocol="http" Name="ServiceEndpoint" Type="Input" Port="8600" />
+      <Endpoint Protocol="http" Name="ServiceEndpoint" Type="Input" Port="8191" />
     </Endpoints>
   </Resources>
 </ServiceManifest>

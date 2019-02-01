@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.ServiceFabric.Services.Remoting.Client;
+using OcrService.Interfaces;
 
 namespace ApiService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PassportController : ControllerBase
+    public class PhotoController : ControllerBase
     {
-        // POST api/values
         [HttpPost]
-        public async  Post([FromBody] IFormFile passportPhoto)
+        public async Task<UIPassportData> Post([FromBody] IFormFile passportPhoto)
         {
+            byte[] outputArray;
+
             if (passportPhoto == null || passportPhoto.Length == 0)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
 
-            byte[] outputArray;
             using (var stream = new MemoryStream())
             {
                 await passportPhoto.CopyToAsync(stream);
@@ -29,13 +33,14 @@ namespace ApiService.Controllers
 
             try
             {
-                var ocrService = ServiceProxy.Create<IOcrService>(new Uri("fabric:/DataServiceApplication/OcrService"));
-                var passport = await ocrService.ParsePassport(outputArray);
-                Response.StatusCode = (int)HttpStatusCode.OK;
+                var calculatorClient = ServiceProxy.Create<IOcrService>(new Uri("fabric:/DataServiceApplication/OcrService"));
+                var passport = await calculatorClient.ParsePassport(outputArray);
+                return new UIPassportData(passport);
             }
-            catch (Exception exception)
+            catch (Exception ocrException)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
             }
         }
     }

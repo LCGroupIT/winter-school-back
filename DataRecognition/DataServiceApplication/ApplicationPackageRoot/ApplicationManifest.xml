@@ -7,12 +7,21 @@
     <Parameter Name="ApiService_InstanceCount" DefaultValue="-1" />
     <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="ApiService_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="ApiService_InstanceCount" DefaultValue="-1" />
     <Parameter Name="OcrService_InstanceCount" DefaultValue="-1" />
     <Parameter Name="DataService_InstanceCount" DefaultValue="-1" />
   </Parameters>
   <!-- Импортируйте ServiceManifest из ServicePackage. Значения ServiceManifestName и ServiceManifestVersion 
        должны совпадать с атрибутами Name и Version элемента ServiceManifest, определенного в 
        файле ServiceManifest.xml. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ApiServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ApiService_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="ApiServicePkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
@@ -48,6 +57,11 @@
          модуля ServiceFabric PowerShell.
          
          Приведенное ниже значение атрибута ServiceTypeName должно совпадать с именем, определенным в импортированном файле ServiceManifest.xml. -->
+    <Service Name="ApiService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="ApiServiceType" InstanceCount="[ApiService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
     <Service Name="ApiService" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="ApiServiceType" InstanceCount="[ApiService_InstanceCount]">
         <SingletonPartition />
