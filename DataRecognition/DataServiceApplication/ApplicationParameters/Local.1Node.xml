@@ -3,12 +3,6 @@
   <Parameters>
     <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" Value="Development" />
     <Parameter Name="ApiService_InstanceCount" Value="1" />
-    <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" Value="Development" />
-    <Parameter Name="ApiService_InstanceCount" Value="1" />
-    <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" Value="Development" />
-    <Parameter Name="ApiService_InstanceCount" Value="1" />
-    <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" Value="Development" />
-    <Parameter Name="ApiService_InstanceCount" Value="1" />
     <Parameter Name="OcrService_InstanceCount" Value="1" />
     <Parameter Name="DataService_InstanceCount" Value="1" />
   </Parameters>
