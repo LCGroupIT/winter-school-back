@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("DataRecognition.Domain.Model")]
+[assembly: AssemblyTitle("Domain.Model")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DataRecognition.Domain.Model")]
+[assembly: AssemblyProduct("Domain.Model")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("92d9936e-e938-4774-8bb2-7f9c5db4538a")]
+[assembly: Guid("7f2a428a-2348-4d81-8cdb-ba0751b031fa")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

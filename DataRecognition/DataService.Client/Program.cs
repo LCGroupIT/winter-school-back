@@ -1,16 +1,15 @@
-﻿using Domain.Model;
-using System;
-using Microsoft.ServiceFabric.Services.Remoting.Client;
+﻿using System;
 using DataService.Interfaces;
+using Domain.Model;
+using Microsoft.ServiceFabric.Services.Remoting.Client;
 
 namespace DataService.Client
 {
-    public class Program
+    internal class Program
     {
-        //Тест. Nunit вылетает, возможно плохо взаимодействует с fabric service
         private static void Main(string[] args)
         {
-            var passport = new Passport()
+            var passport = new Passport
             {
                 Address = "Звездная",
                 Birthday = new DateTime(1980, 4, 3),
@@ -25,11 +24,8 @@ namespace DataService.Client
                 Sex = SexType.Male
             };
 
-            var calculatorClient = ServiceProxy.Create<IDataService>(new Uri("fabric:/DataServiceApplication/DataService"));
-
-            calculatorClient.SavePassportAsync(passport).Wait();
-
-            Console.WriteLine("No exceptions");
+            var client = ServiceProxy.Create<IDataService>(new Uri("fabric:/DataServiceApplication/DataService"));
+            client.SavePassportAsync(passport).Wait();
         }
     }
 }

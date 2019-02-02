@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Services.Remoting;
+﻿using System.Threading.Tasks;
 using Domain.Model;
+using Microsoft.ServiceFabric.Services.Remoting;
 
 namespace OcrService.Interfaces
 {
     public interface IOcrService : IService
     {
-        Task<Passport>  ParsePassport(byte[] passportImage);
+        Task<Passport> ParsePassport(byte[] passportImage);
     }
 }

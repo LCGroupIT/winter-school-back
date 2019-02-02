@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="ClientApiServicePkg"
+                 Version="1.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <!-- Это имя ServiceType. 
+         Оно должно совпадать со строкой, используемой в вызове RegisterServiceType в Program.cs. -->
+    <StatelessServiceType ServiceTypeName="ClientApiServiceType" />
+  </ServiceTypes>
+
+  <!-- Пакет кода является исполняемым файлом службы. -->
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>ClientApiService.exe</Program>
+        <WorkingFolder>CodePackage</WorkingFolder>
+      </ExeHost>
+    </EntryPoint>
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+    </EnvironmentVariables>
+  </CodePackage>
+
+  <!-- Пакет конфигурации представляет собой содержимое каталога Config в PackageRoot 
+       с набором настраиваемых параметров конфигурации для вашей службы, который обновляется независимо и имеет контроль версий. -->
+  <ConfigPackage Name="Config" Version="1.0.0" />
+
+  <Resources>
+    <Endpoints>
+      <!-- Эту конечную точку прослушиватель каналов связи использует для получения порта для 
+           прослушивания. Обратите внимание, что, если ваша служба поделена на разделы, этот порт совместно используется
+           с репликами различных разделов, размещенными в коде. -->
+      <Endpoint Protocol="https" Name="ServiceEndpoint" Type="Input" Port="8894" />
+    </Endpoints>
+  </Resources>
+</ServiceManifest>

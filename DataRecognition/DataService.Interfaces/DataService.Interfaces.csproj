@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F050B7E9-7D09-4D32-9834-D79FF8EC0A51}</ProjectGuid>
+    <ProjectGuid>{EB4B2C8A-C0C2-47BE-991C-EDBE386620B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataService.Interfaces</RootNamespace>
     <AssemblyName>DataService.Interfaces</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,71 +31,53 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ServiceFabric.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Data.3.3.624\lib\net471\Microsoft.ServiceFabric.Data.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Data.3.3.622\lib\net462\Microsoft.ServiceFabric.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Data.Extensions, Version=1.4.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Data.Extensions.1.4.624\lib\net471\Microsoft.ServiceFabric.Data.Extensions.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Data.Extensions.1.4.622\lib\net462\Microsoft.ServiceFabric.Data.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Data.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Data.Interfaces.3.3.624\lib\net471\Microsoft.ServiceFabric.Data.Interfaces.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Data.Interfaces.3.3.622\lib\net462\Microsoft.ServiceFabric.Data.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Diagnostics, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Diagnostics.Internal.3.3.624\lib\net471\Microsoft.ServiceFabric.Diagnostics.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Diagnostics.Internal.3.3.622\lib\net462\Microsoft.ServiceFabric.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.FabricTransport, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.FabricTransport.Internal.3.3.624\lib\net471\Microsoft.ServiceFabric.FabricTransport.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.FabricTransport.Internal.3.3.622\lib\net462\Microsoft.ServiceFabric.FabricTransport.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.FabricTransport.V2, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.FabricTransport.Internal.3.3.624\lib\net471\Microsoft.ServiceFabric.FabricTransport.V2.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.FabricTransport.Internal.3.3.622\lib\net462\Microsoft.ServiceFabric.FabricTransport.V2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Internal, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.624\lib\net471\Microsoft.ServiceFabric.Internal.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.622\lib\net462\Microsoft.ServiceFabric.Internal.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Internal.Strings, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.624\lib\net471\Microsoft.ServiceFabric.Internal.Strings.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.622\lib\net462\Microsoft.ServiceFabric.Internal.Strings.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Preview, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.624\lib\net471\Microsoft.ServiceFabric.Preview.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.622\lib\net462\Microsoft.ServiceFabric.Preview.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.ReliableCollection.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Data.Extensions.1.4.624\lib\net471\Microsoft.ServiceFabric.ReliableCollection.Interop.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Data.Extensions.1.4.622\lib\net462\Microsoft.ServiceFabric.ReliableCollection.Interop.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Services, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Services.3.3.624\lib\net471\Microsoft.ServiceFabric.Services.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Services.3.3.622\lib\net462\Microsoft.ServiceFabric.Services.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ServiceFabric.Services.Remoting, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.Services.Remoting.3.3.624\lib\net471\Microsoft.ServiceFabric.Services.Remoting.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.Services.Remoting.3.3.622\lib\net462\Microsoft.ServiceFabric.Services.Remoting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Fabric, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.624\lib\net471\System.Fabric.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.622\lib\net462\System.Fabric.dll</HintPath>
     </Reference>
     <Reference Include="System.Fabric.Management.ServiceModel, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.624\lib\net471\System.Fabric.Management.ServiceModel.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.622\lib\net462\System.Fabric.Management.ServiceModel.dll</HintPath>
     </Reference>
     <Reference Include="System.Fabric.Strings, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
-      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.624\lib\net471\System.Fabric.Strings.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ServiceFabric.6.4.622\lib\net462\System.Fabric.Strings.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -114,7 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
-      <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
+      <Project>{7f2a428a-2348-4d81-8cdb-ba0751b031fa}</Project>
       <Name>Domain.Model</Name>
     </ProjectReference>
   </ItemGroup>

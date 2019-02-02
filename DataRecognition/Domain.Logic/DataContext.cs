@@ -1,5 +1,5 @@
-﻿using Domain.Model;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using Domain.Model;
 
 namespace Domain.Logic
 {

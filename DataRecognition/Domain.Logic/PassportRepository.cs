@@ -13,11 +13,11 @@ namespace Domain.Logic
             _connectionString = connectionString;
         }
 
-        public async Task CreateAsync(Passport passport)
+        public async Task CreateAsync(Passport item)
         {
             using (var context = new DataContext(_connectionString))
             {
-                context.Passports.Add(passport);
+                context.Passports.Add(item);
                 await context.SaveChangesAsync();
             }
         }

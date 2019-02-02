@@ -14,15 +14,10 @@ namespace DataService
     {
         private readonly IRepository<Passport> _repository;
 
-        public DataService(StatelessServiceContext context, IRepository<Passport> repository)
+        public DataService(StatelessServiceContext context, IRepository<Passport> repo)
             : base(context)
         {
-            _repository = repository;
-        }
-
-        public Task SavePassportAsync(Passport passport)
-        {
-            return _repository.CreateAsync(passport);
+            _repository = repo;
         }
 
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -31,6 +26,11 @@ namespace DataService
             {
                 new ServiceInstanceListener(this.CreateServiceRemotingListener)
             };
+        }
+
+        public Task SavePassportAsync(Passport passport)
+        {
+            return _repository.CreateAsync(passport);
         }
     }
 }

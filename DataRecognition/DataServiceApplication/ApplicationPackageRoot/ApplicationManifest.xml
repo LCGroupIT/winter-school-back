@@ -1,9 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="DataServiceApplicationType" ApplicationTypeVersion="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="ClientApiService_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
+    <Parameter Name="ClientApiService_InstanceCount" DefaultValue="-1" />
     <Parameter Name="OcrService_InstanceCount" DefaultValue="-1" />
     <Parameter Name="DataService_InstanceCount" DefaultValue="-1" />
   </Parameters>
+  <!-- Импортируйте ServiceManifest из ServicePackage. Значения ServiceManifestName и ServiceManifestVersion 
+       должны совпадать с атрибутами Name и Version элемента ServiceManifest, определенного в 
+       файле ServiceManifest.xml. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ClientApiServicePkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ClientApiService_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="OcrServicePkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
@@ -13,6 +25,16 @@
     <ConfigOverrides />
   </ServiceManifestImport>
   <DefaultServices>
+    <!-- Приведенный ниже раздел создает экземпляры типов служб при создании экземпляра этого 
+         типа приложения. Кроме того, вы можете создать один экземпляр типа службы или несколько с помощью 
+         модуля ServiceFabric PowerShell.
+         
+         Приведенное ниже значение атрибута ServiceTypeName должно совпадать с именем, определенным в импортированном файле ServiceManifest.xml. -->
+    <Service Name="ClientApiService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="ClientApiServiceType" InstanceCount="[ClientApiService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
     <Service Name="OcrService" ServicePackageActivationMode="ExclusiveProcess">
       <StatelessService ServiceTypeName="OcrServiceType" InstanceCount="[OcrService_InstanceCount]">
         <SingletonPartition />
