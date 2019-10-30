@@ -132,9 +132,12 @@ namespace FaceRecognition
             //Program program = new Program();
             Passport passport = new Passport();
             Bitmap imagePassport = new Bitmap("Паспорт.jpg");
-            MemoryStream ms = new MemoryStream();
-            imagePassport.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            var imageByte = ms.ToArray();
+            byte[] imageByte = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imagePassport.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                imageByte = ms.ToArray();
+            }
 
             var calculatorClient = ServiceProxy.Create<IOcrService>(new Uri("fabric:/DataServiceApplication/OcrService"));
 
